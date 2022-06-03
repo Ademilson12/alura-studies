@@ -22,11 +22,16 @@ function App() {
   // ]); Dados para teste
 
   const [tarefas, setTarefas] = useState<ITarefa[]>([]); // informando que pode ter um array de tarefas ou vazio
+  const [selecionado, setSelecionado] = useState<ITarefa>();
+
+  function selecionaTarefa(tarefaSelecionada: ITarefa) {
+    setSelecionado(tarefaSelecionada);
+  }
 
   return (
     <div className={style.AppStyle}>
       <Formulario setTarefas={setTarefas} />
-      <Lista tarefas={tarefas} />
+      <Lista tarefas={tarefas} selecionaTarefa={selecionaTarefa} />
       <Cronometro />
     </div>
   );
