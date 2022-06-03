@@ -2,6 +2,7 @@ import React from "react";
 import { ITarefa } from "../../types/tarefa";
 import Botao from "../Botao";
 import style from "./Formulario.module.scss";
+import { v4 as uuidv4 } from "uuid";
 
 class Formulario extends React.Component<{
   setTarefas: React.Dispatch<React.SetStateAction<ITarefa[]>>;
@@ -15,8 +16,14 @@ class Formulario extends React.Component<{
     evento.preventDefault();
     this.props.setTarefas((tarefasAntigas) => [
       ...tarefasAntigas,
-      { ...this.state },
+      {
+        ...this.state,
+        selecionado: false,
+        completado: false,
+        id: uuidv4(),
+      },
     ]); // Pegando as tarefas antigas e setando uma nova tarefa através do spread operator
+    this.setState({ tarefa: "", tempo: "00:00:00" });
   }
 
   render() {
