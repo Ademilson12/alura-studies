@@ -7,9 +7,10 @@ import { useEffect, useState } from "react";
 
 interface Props {
   selecionado: ITarefa | undefined;
+  finalizarTarefa: () => void;
 }
 
-function Cronometro({ selecionado }: Props) {
+function Cronometro({ selecionado, finalizarTarefa }: Props) {
   // console.log("Conversao", tempoParaSegundos("01:01:01"));
   const [tempo, setTempo] = useState<number>();
 
@@ -25,6 +26,7 @@ function Cronometro({ selecionado }: Props) {
         setTempo(contador - 1);
         return regressiva(contador - 1);
       }
+      finalizarTarefa();
     }, 1000);
   }
 
